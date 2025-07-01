@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulario</title>
+    <link rel="stylesheet" href="formulario.css">
+</head>
+<body>
+    <div class="footer">
+        <div class="header">
+            <img class="image" src="../Multimedia/netflix.png" alt="Netflix" title="Logo Netflix">
+            <div class="idiomas">
+                <label for="idiomas-choice" id="label-idiomas">Idiomas</label>
+                <input list="idiomas-flavors" id="idiomas-choice" name="idiomas-choice">
+                <datalist id="idiomas-flavors">
+                    <option value="Español">
+                    <option value="English">
+                </datalist>
+                <a href="../login/login.html"><input class="button" type="submit" value="Iniciar sesión" id="button-login"></a>
+            </div>
+        </div>
+        <h1 id="header-title">Películas y series ilimitadas y mucho más</h1>
+        <h2 id="header-subtitle">Disfruta donde quieras. Cancela cuando quieras.</h2>
+        <p id="header-description">¿Quieres ver Netflix ya? Ingresa tu email para crear una cuenta o reiniciar tu membresía de Netflix.</p>
+        <div class="formulario">
+            <form id="register-form">
+                <div class="username">
+                    <input type="text" id="register-email" required>
+                    <label id="label-email">Email or phone number</label>
+                </div>
+                <div class="username">
+                    <input type="password" id="register-password" required>
+                    <label id="label-password">Password</label>
+                </div>
+                <div class="username">
+                    <input type="password" id="register-repeat-password" required>
+                    <label id="label-repeat-password">Repeat your password</label>
+                </div>
+                <div class="username">
+                    <input type="text" id="register-card" required pattern="\d{16,}" minlength="16">
+                    <label id="label-card">Card Number</label>
+                </div>
+                <input class="button" type="submit" value="Registrarse" id="button-register">
+            </form>
+        </div>
+    </div>
+    <div class="informacion">
+        <p>Preguntas frecuentes</p>
+        <p>Prensa</p>
+        <p>Formas de ver</p>
+        <p>Preferencias de cookies</p>
+        <p>Pruebas de velocidad</p>
+        <p>Centro de ayuda</p>
+        <p>Terminos de uso</p>
+        <p>Cuenta</p>
+        <p>Empleo</p>
+        <p>Privacidad</p>
+        <p>Contactanos</p>
+        <p>Solo en Netflix</p>
+    </div>
+    <script src="../js/login.js"></script>
+    <script src="../js/idiomas.js"></script>
+</body>
+</html>
