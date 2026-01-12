@@ -1,0 +1,50 @@
+Fecha: 2026-01-12
+
+Resumen de correcciones aplicadas
+---------------------------------
+1) Migración correctora creada y ejecutada
+   - Archivo: db/migrations/20260112190000-fix-perfilcont-fk.js
+   - Objetivo: Reconstruir la tabla `PerfilContenidos` para que la FK de `perfilId` apunte a `Perfils` (y `contenidoId` a `Contenidos`) con ON DELETE CASCADE.
+   - Pasos dentro de la migración:
+     a) Crear tabla temporal `PerfilContenidos_new` con referencias a `Perfils` y `Contenidos`.
+     b) Copiar datos desde `PerfilContenidos` a `PerfilContenidos_new`.
+     c) Eliminar la tabla antigua y renombrar la nueva a `PerfilContenidos`.
+   - Comando ejecutado: `npx sequelize db:migrate` (la migración `20260112190000-fix-perfilcont-fk` se migró correctamente).
+
+2) Inspecciones y scripts añadidos/ejecutados
+   - Scripts en `BACK/scripts/`:
+     • `inspectFK.js` — usa PRAGMA foreign_key_list('PerfilContenidos') para listar FKs.
+     • `show_table_sql.js` — extrae el SQL CREATE TABLE de sqlite_master.
+     • `check_perfils_and_fks2.js` — verifica existencia de la tabla `Perfils` y lista las FKs.
+     • `analyze_create_references.js` — analiza el SQL CREATE TABLE y cuenta las cláusulas `REFERENCES`.
+   - Comandos ejecutados y resultados relevantes:
+     • `node scripts/inspectFK.js` → mostró solo la FK para `contenidoId` (no apareció la FK para `perfilId`).
+     • `node scripts/show_table_sql.js` → mostró el CREATE TABLE que contiene ambas cláusulas `REFERENCES` (`Perfils` y `Contenidos`).
+     • `node scripts/check_perfils_and_fks2.js` y `analyze_create_references.js` → confirmaron que `Perfils` existe y que el SQL contiene 2 referencias.
+
+3) Observación importante
+   - A pesar de que la migración fue aplicada y el CREATE TABLE incluye `REFERENCES Perfils`, `PRAGMA foreign_key_list('PerfilContenidos')` devolvió solo la referencia sobre `contenidoId`.
+   - Esto indica que la FK para `perfilId` no quedó activa en la lista de claves foráneas del sqlite runtime (posible inconsistencia en la reconstrucción de la tabla o en cómo SQLite registra FKs internas).
+
+4) Recomendación / Siguiente paso
+   - Recomiendo crear y ejecutar una nueva migración que vuelva a reconstruir `PerfilContenidos` (misma estrategia: crear tabla nueva con ambas FKs, copiar datos, dropear y renombrar) y luego verificar con `node scripts/inspectFK.js`.
+   - Si estás en producción, haz backup antes de aplicar cambios que reconstruyan tablas.
+
+Comandos útiles para verificación
+---------------------------------
+- `npx sequelize db:migrate`              # ejecutar migraciones pendientes
+- `node scripts/inspectFK.js`             # listar FKs actuales en la tabla
+- `node scripts/show_table_sql.js`        # ver el SQL CREATE TABLE almacenado en sqlite_master
+- `node scripts/check_perfils_and_fks2.js`# comprobar existencia de `Perfils` y mostrar FKs
+- `npx sequelize db:migrate:status`       # ver estado de migraciones
+
+Notas adicionales
+-----------------
+- Archivos modificados/añadidos relacionados:
+  • db/migrations/20260112190000-fix-perfilcont-fk.js
+  • scripts/inspectFK.js
+  • scripts/show_table_sql.js
+  • scripts/check_perfils_and_fks2.js
+  • scripts/analyze_create_references.js
+
+Si quieres, puedo crear también una migración adicional y aplicarla ahora para forzar la FK faltante y dejar todo verificado.

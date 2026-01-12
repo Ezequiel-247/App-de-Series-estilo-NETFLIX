@@ -1,0 +1,186 @@
+/* Nav general */
+nav.nav-guest {
+    width: 100%;
+    background: linear-gradient(to bottom, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0.9) 70%, transparent 80%);
+    color: white;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+    padding: 15px 30px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+@media (max-width: 600px) {
+    nav.nav-guest {
+        flex-direction: column;
+        gap: 15px;
+        padding: 10px;
+    }
+}
+
+/* Logo */
+nav.nav-guest .logo img {
+    width: 100px;
+    height: auto;
+}
+
+@media (min-width: 768px) {
+    nav.nav-guest .logo img {
+        width: 120px;
+    }
+}
+
+/* Links */
+.nav-guest .nav-links {
+    display: flex;
+    gap: 25px; /* separación entre los links */
+    font-size: 1.2rem; /* tamaño de letra más grande */
+    font-weight: 500;
+    list-style: none;
+}
+
+.nav-guest .nav-links li a {
+    color: white;
+    text-decoration: none;
+    transition: color 0.3s ease, transform 0.2s ease;
+}
+
+.nav-guest .nav-links li a:hover {
+    color: #e50914; /* rojo tipo Netflix al pasar el mouse */
+    transform: scale(1.05); /* leve efecto de zoom */
+}
+
+/* Idioma */
+nav.nav-guest .idioma select {
+    background: transparent;
+    color: white;
+    border: 1px solid white;
+    padding: 5px 10px;
+    border-radius: 5px;
+    font-size: 14px;
+    cursor: pointer;
+}
+
+nav.nav-guest .idioma select option {
+    background: black;
+    color: white;
+}
+
+/* Utilidad para accesibilidad (Screen Readers) */
+.sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border-width: 0;
+}
+
+/* --- Estilos para el Nav de Usuario Logueado (Inicio) --- */
+
+.nav-container {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    height: 70px;
+    padding: 10px 20px;
+    z-index: 100;
+    transition: all 0.5s ease-in;
+    background: linear-gradient(to bottom, rgba(0,0,0,0.7) 10%, transparent);
+}
+
+.nav-black {
+    background-color: black;
+}
+
+.menu {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.navegacion {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.logo {
+    width: 100px;
+    cursor: pointer;
+    object-fit: contain;
+}
+
+.navegacion--lista {
+    display: none; /* Oculto en móviles por defecto */
+    gap: 20px;
+    color: white;
+    font-size: 14px;
+}
+
+@media (min-width: 768px) {
+    .navegacion--lista {
+        display: flex;
+    }
+}
+
+.navegacion--lista li {
+    cursor: pointer;
+    transition: color 0.3s;
+}
+
+.navegacion--lista li:hover {
+    color: #b3b3b3;
+}
+
+.usuario {
+    width: 35px;
+    height: 35px;
+    border-radius: 4px;
+    overflow: hidden;
+    cursor: pointer;
+}
+
+/* --- Buscador Expandible --- */
+.buscador {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    background-color: transparent;
+    border: 1px solid transparent;
+    padding: 5px;
+    transition: all 0.3s ease;
+}
+
+.buscador img {
+    cursor: pointer;
+    width: 24px; /* Ajuste de tamaño de lupa */
+}
+
+.buscador.activo {
+    background-color: black;
+    border: 1px solid white;
+}
+
+.buscador input {
+    background: transparent;
+    border: none;
+    color: white;
+    width: 0;
+    transition: width 0.3s ease;
+    outline: none;
+    opacity: 0;
+}
+
+.buscador.activo input {
+    width: 200px;
+    opacity: 1;
+    padding-left: 5px;
+}

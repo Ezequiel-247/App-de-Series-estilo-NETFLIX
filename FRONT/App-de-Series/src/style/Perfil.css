@@ -1,0 +1,97 @@
+.perfil-container {
+    text-align: center;
+    padding: 2rem;
+}
+
+.perfil-lista {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.perfil-item {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.perfil-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    transition: transform 0.2s;
+}
+
+.perfil-btn:hover {
+    transform: scale(1.05);
+}
+
+.perfil-avatar {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    margin-bottom: 10px;
+    object-fit: cover;
+    border: 2px solid transparent;
+}
+
+.perfil-btn:hover .perfil-avatar {
+    border-color: white;
+}
+
+.perfil-nombre {
+    color: grey;
+    font-size: 1.2rem;
+    margin: 0;
+    transition: color 0.2s;
+}
+
+.perfil-btn:hover .perfil-nombre {
+    color: white;
+}
+
+.perfil-agregar {
+    width: 100px;
+    height: 100px;
+    border: 2px dashed #666;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    cursor: pointer;
+    text-decoration: none;
+    color: #666;
+    transition: all 0.2s;
+}
+
+.perfil-agregar:hover {
+    background-color: white;
+    color: black;
+    border-color: white;
+}
+
+.plus-icon {
+    font-size: 2rem;
+}
+
+.btn-eliminar {
+    margin-top: 10px;
+    background: transparent;
+    border: 1px solid #666;
+    color: #999;
+    padding: 5px 15px;
+    cursor: pointer;
+    font-size: 0.8rem;
+    transition: all 0.2s;
+}
+
+.btn-eliminar:hover {
+    border-color: white;
+    color: white;
+}

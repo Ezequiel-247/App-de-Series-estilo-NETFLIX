@@ -1,0 +1,70 @@
+const express = require("express");
+const app = express();
+const cors = require('cors');
+const path = require('path');
+const db = require('./db/models')
+const usuarioRoutes = require("./routes/usuarioRouter");
+const perfilRoutes = require("./routes/perfilRouter");
+const contenidoRoutes = require("./routes/contenidoRouter");
+const generoRoutes = require("./routes/generosRouter");
+const avatarRoutes = require('./routes/avatarsRouter');
+
+// --- SWAGGER CONFIGURACIÓN ---
+const swaggerUI = require('swagger-ui-express');
+const swaggerJsDoc = require('swagger-jsdoc');
+
+const swaggerOptions = {
+    definition: {
+        openapi: '3.0.0',
+        info: {
+            title: 'Netflix Clone API',
+            version: '1.0.0',
+            description: 'API para plataforma de streaming tipo Netflix',
+        },
+        servers: [
+            {
+                url: 'http://localhost:3000',
+            },
+        ],
+        components: {
+            securitySchemes: {
+                bearerAuth: {
+                    type: 'http',
+                    scheme: 'bearer',
+                    bearerFormat: 'JWT',
+                },
+            },
+        },
+    },
+    apis: ['./routes/*.js'], // Busca anotaciones en todos los archivos de la carpeta routes
+};
+
+app.use(express.json()) 
+app.use(cors());
+
+app.use('/usuario', usuarioRoutes);
+app.use('/perfil', perfilRoutes);
+app.use('/contenido', contenidoRoutes);
+app.use('/genero', generoRoutes);
+app.use('/api/avatars', avatarRoutes);
+app.use('/images', express.static(path.join(__dirname, 'public/images')));
+
+// --- RUTA DOCUMENTACIÓN ---
+const swaggerDocs = swaggerJsDoc(swaggerOptions);
+app.use('/api-docs', swaggerUI.serve, swaggerUI.setup(swaggerDocs));
+
+
+
+const PORT = process.env.PORT || 3000
+
+app.listen(PORT, async ()=>{
+    console.log(`Aplicación corriendo en el puerto: ${PORT}`)
+
+    try {
+        // Usamos force: true para limpiar la base de datos corrupta y recrear las tablas
+        await db.sequelize.sync();
+        console.log("Base de datos sincronizada correctamente");
+    } catch (error) {
+        console.error("Error al sincronizar la base de datos:", error);
+    }
+});

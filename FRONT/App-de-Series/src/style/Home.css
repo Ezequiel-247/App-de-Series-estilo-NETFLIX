@@ -1,0 +1,186 @@
+/* Reset global y animaciones */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Roboto', sans-serif;
+}
+
+@keyframes fadeInUp {
+    0% {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeInAnswer {
+    0% {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* HERO */
+.hero {
+    position: relative;
+    z-index: 1;
+    height: auto;
+    min-height: 70vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 50px 20px;
+    background: url("/multimedia/fondo-netflix.jpg") center/cover no-repeat;
+}
+
+.hero .overlay {
+    position: relative;
+    z-index: 2;
+    text-align: center;
+    max-width: 800px;
+    padding: 20px;
+    border-radius: 10px;
+    background: rgba(0,0,0,0.5);
+    animation: fadeInUp 0.8s ease forwards;
+}
+
+.hero h1 {
+    font-size: 3rem;
+    font-weight: bold;
+    margin-bottom: 15px;
+    color: white;
+}
+
+@media (max-width: 768px) {
+    .hero h1 {
+        font-size: 2rem;
+    }
+}
+
+.hero h2 {
+    font-size: 1.5rem;
+    margin-bottom: 20px;
+    color: white;
+}
+
+.email-form {
+    display: flex;
+    justify-content: center;
+    margin-top: 10px;
+}
+
+@media (max-width: 768px) {
+    .email-form {
+        flex-direction: column;
+        align-items: center;
+        gap: 10px;
+    }
+}
+
+.email-form input {
+    padding: 12px;
+    width: 60%;
+    border: none;
+    outline: none;
+    font-size: 1rem;
+    width: 100%; /* Full width en móvil si el padre cambia a column */
+}
+
+.email-form button {
+    background: red;
+    border: none;
+    padding: 12px 20px;
+    color: white;
+    font-size: 1rem;
+    cursor: pointer;
+}
+
+/* FAQ */
+.faq {
+    position: relative;
+    z-index: 1;
+    padding: 20px 20px;
+    margin-top: -30px;
+    text-align: center;
+}
+
+.faq h2 {
+    font-size: 2rem;
+    margin-bottom: 30px;
+    color: white;
+}
+
+.faq-list {
+    max-width: 700px;
+    margin: 0 auto;
+    text-align: left;
+}
+
+.faq-item {
+    margin-bottom: 10px;
+}
+
+.faq-question {
+    width: 100%;
+    background: #222;
+    color: white;
+    padding: 15px;
+    font-size: 1.1rem;
+    text-align: left;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    transition: background 0.3s ease;
+}
+
+.faq-question:hover {
+    background: #333;
+}
+
+.faq-answer {
+    background: #333;
+    padding: 18px;
+    font-size: 1.05rem;
+    margin-top: 5px;
+    line-height: 1.5;
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeInAnswer 0.5s forwards;
+}
+
+/* Botón */
+.btn-iniciar {
+    display: inline-block;
+    background-color: #e50914;
+    color: white;
+    font-size: 18px;
+    font-weight: bold;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    text-align: center;
+    text-decoration: none;
+    transition: background-color 0.3s ease;
+}
+
+.btn-iniciar:hover {
+    background: rgb(230,52,52);
+    color: black;
+}
+
+/* Home scrolled effect */
+.home.scrolled .hero .overlay {
+    opacity: 0.8;
+    transform: scale(0.98);
+    transition: all 0.3s ease;
+}

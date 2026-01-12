@@ -1,0 +1,74 @@
+.footer {
+    display: flex;
+    justify-content: space-between; /* Izquierda - Derecha */
+    align-items: center;
+    padding: 50px 30px;
+    width: 100%;
+    background: linear-gradient(
+        to top,
+        rgba(0, 0, 0, 0.9) 0%,
+        rgba(0, 0, 0, 0.9) 70%,
+        transparent 90%
+    );
+    color: white;
+    font-size: 0.9rem;
+    flex-wrap: wrap; /* Para móviles */
+    position: relative;
+    z-index: 50; /* Asegura que el footer esté por encima del fondo */
+}
+
+.footer-left {
+    font-size: 0.95rem;
+    font-weight: 500;
+    margin-bottom: 10px; /* Espacio en móvil si se envuelve */
+}
+
+.footer-right {
+    display: flex;
+    align-items: center;
+    justify-content: center; /* centra horizontalmente el span y los iconos */
+    gap: 15px; /* espacio entre "Mis redes:" y los iconos */
+    flex-wrap: wrap;
+}
+
+.footer-right span {
+    font-weight: bold;
+    color: #eee;
+}
+
+.social-icons {
+    display: flex; /* <--- hace que los iconos estén en línea */
+    align-items: center;
+    gap: 15px; /* separación entre iconos */
+}
+
+.social-icons a img {
+    width: 30px;
+    height: 30px;
+    transition: transform 0.3s ease;
+}
+
+.social-icons a:hover img {
+    transform: scale(1.1);
+}
+
+
+@media (max-width: 600px) {
+    .footer {
+        flex-direction: column;
+        align-items: center; /* Centra todo en móvil */
+        padding: 20px;
+        text-align: center;
+    }
+
+    .footer-left,
+    .footer-right {
+        margin-bottom: 10px;
+        width: 100%;
+    }
+
+    .footer-right {
+        justify-content: center; /* Asegura que los iconos queden centrados */
+        gap: 15px;
+    }
+}

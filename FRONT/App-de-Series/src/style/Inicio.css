@@ -1,0 +1,417 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700;900&display=swap');
+*{
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font-family: 'Roboto',sans-serif;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+.inicio-page {
+    background-color: #141414;
+    min-height: 100vh;
+}
+
+img{
+    object-fit: cover;
+    width: 100%;
+    height: 100%;
+    display: block;
+}
+
+ul{
+    list-style: none;
+    padding-left: 0;
+}
+
+a{
+    text-decoration: none;
+    color: white;
+}
+/*Banner*/
+.background--banner{
+    height: 70vh;
+    width: 100%;
+    overflow: hidden;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-color: black;
+    background-position: center center;
+    position: relative;
+}
+
+@media (max-width: 768px) {
+    .background--banner {
+        height: 50vh; /* Menos altura en móviles */
+    }
+}
+
+.banner{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    position: absolute;
+}
+
+.imagotipo{
+    flex: 1;
+    width: 95%;
+    margin-inline: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: start;
+    gap: 15px;
+}
+
+.titulo-destacada {
+    font-size: 3rem;
+    font-weight: 900;
+    margin-bottom: 10px;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.8);
+    max-width: 800px;
+    line-height: 1.1;
+}
+
+@media (max-width: 768px) {
+    .titulo-destacada {
+        font-size: 2rem; /* Texto más chico en móvil */
+    }
+}
+
+.descripcion-destacada {
+    font-size: 1.2rem;
+    font-weight: 400;
+    max-width: 600px;
+    margin-bottom: 20px;
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.8);
+    line-height: 1.5;
+    display: -webkit-box;
+    -webkit-line-clamp: 3; /* Limita a 3 líneas */
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+@media (max-width: 768px) {
+    .descripcion-destacada {
+        font-size: 1rem;
+        -webkit-line-clamp: 3; /* Menos texto en móvil */
+    }
+}
+
+.imagotipo--info{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+}
+
+.botones-banner {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.boton-play, .boton-info, .boton-lista {
+    border-radius: 5px;
+    font-size: 1.2rem;
+    font-weight: 700;
+    padding: 10px 25px;
+    cursor: pointer;
+    border: none;
+    transition: all 0.2s ease;
+}
+
+.boton-play {
+    background-color: white;
+    color: black;
+}
+.boton-play:hover {
+    background-color: rgba(255, 255, 255, 0.75);
+}
+
+.boton-info, .boton-lista {
+    background-color: rgba(109, 109, 110, 0.7);
+    color: white;
+}
+.boton-info:hover, .boton-lista:hover {
+    background-color: rgba(109, 109, 110, 0.4);
+}
+
+@media (max-width: 768px) {
+    .boton-play, .boton-info, .boton-lista {
+        padding: 8px 15px; /* Botones más compactos */
+        font-size: 1rem;
+    }
+}
+
+.catalogos{
+    padding-block: 2px;
+    background-color: black;
+    color: white;
+}
+.catalogos--peliculas{
+    width: 95%;
+    margin-inline: auto;
+}
+.catalogos--peliculas h1,
+.catalogos--peliculas h2{
+    padding: 10px;
+}
+
+/* --- Estilos del Carrusel con Flechas --- */
+.slider-wrapper {
+    position: relative;
+}
+
+.slider-arrow {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 50px;
+    background-color: rgba(0, 0, 0, 0.5);
+    color: white;
+    border: none;
+    z-index: 10;
+    cursor: pointer;
+    font-size: 4rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0; /* Oculto por defecto */
+    transition: opacity 0.3s ease, background-color 0.3s;
+    line-height: 0;
+    padding-bottom: 10px; /* Ajuste visual para centrar el símbolo */
+}
+
+.slider-wrapper:hover .slider-arrow {
+    opacity: 1; /* Mostrar al pasar el mouse */
+}
+
+.slider-arrow:hover {
+    background-color: rgba(0, 0, 0, 0.8);
+    transform: scale(1.05);
+}
+
+.slider-arrow.left {
+    left: 0;
+}
+
+.slider-arrow.right {
+    right: 0;
+}
+
+@media (max-width: 768px) {
+    .slider-arrow {
+        display: none; /* Ocultar flechas en móvil (se usa el dedo) */
+    }
+}
+
+.peliculas{
+    overflow-x: scroll;
+    display: flex;
+    gap: 12px;
+}
+.peliculas::-webkit-scrollbar{
+    width: 0;
+    height: 0;
+}
+.pelicula{
+    min-width: 200px;
+    width: 200px;
+    height: 300px; /* Altura fija para uniformidad */
+    cursor: pointer;
+    transition: transform 0.3s ease;
+    flex-shrink: 0;
+}
+
+.pelicula:hover {
+    transform: scale(1.05);
+}
+
+.resultados-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); /* 2 columnas en móviles */
+    gap: 20px;
+    padding: 20px 0;
+}
+
+@media (min-width: 600px) {
+    .resultados-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+@media (min-width: 900px) {
+    .resultados-grid {
+        grid-template-columns: repeat(4, 1fr); /* Máximo 4 columnas */
+    }
+}
+
+/* Ajuste para que las tarjetas se adapten a la celda de la grilla */
+.resultados-grid .pelicula {
+    min-width: 0; /* Reseteamos el ancho mínimo del carrusel */
+    width: 100%;
+    height: auto;
+    aspect-ratio: 2/3; /* Mantiene la proporción de póster */
+}
+
+/* --- Animación de Bienvenida (Intro) --- */
+.intro-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    background-color: #000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999; /* Por encima de todo, incluido el Nav */
+    animation: fadeOutOverlay 0.5s ease-out 2.5s forwards; /* Desaparece al final */
+}
+
+.intro-texto {
+    color: #E50914; /* Rojo Netflix */
+    font-size: 4rem;
+    font-weight: 900;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    opacity: 0;
+    animation: scaleText 2s ease-out forwards;
+}
+
+@media (max-width: 768px) {
+    .intro-texto {
+        font-size: 2rem; /* Intro más chica en móvil */
+    }
+}
+
+@keyframes scaleText {
+    0% { transform: scale(0.8); opacity: 0; }
+    20% { opacity: 1; }
+    100% { transform: scale(1.2); opacity: 1; }
+}
+
+@keyframes fadeOutOverlay {
+    to { opacity: 0; visibility: hidden; }
+}
+
+/* --- Modal Trailer --- */
+.trailer-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.9);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 10000; /* Por encima de la intro y el nav */
+}
+
+@media (max-width: 768px) {
+    .trailer-container {
+        width: 95%; /* Más ancho en móvil */
+    }
+}
+
+.trailer-container {
+    position: relative;
+    width: 80%;
+    max-width: 900px;
+    aspect-ratio: 16/9;
+    background: black;
+    box-shadow: 0 0 20px rgba(255, 255, 255, 0.1);
+}
+
+.trailer-container iframe {
+    width: 100%;
+    height: 100%;
+    border: none;
+}
+
+.close-trailer {
+    position: absolute;
+    top: -40px;
+    right: 0;
+    background: none;
+    border: none;
+    color: white;
+    font-size: 2rem;
+    cursor: pointer;
+    transition: color 0.3s;
+}
+
+.close-trailer:hover {
+    color: #E50914;
+}
+
+/* --- MENÚ RESPONSIVE (SIDEBAR HORIZONTAL) --- */
+.mobile-menu-toggle {
+    display: none;
+    background: none;
+    border: none;
+    color: white;
+    font-size: 1.8rem;
+    cursor: pointer;
+    z-index: 1002;
+    padding: 10px;
+}
+
+.menu-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    background: rgba(0,0,0,0.7);
+    z-index: 1000;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+}
+
+.menu-overlay.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+@media (max-width: 768px) {
+    .mobile-menu-toggle {
+        display: block;
+    }
+
+    /* El menú sale horizontalmente desde la izquierda (Estilo TV/App) */
+    .nav-links {
+        position: fixed;
+        top: 0;
+        left: 0;
+        height: 100vh;
+        width: 250px;
+        background-color: #000;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 80px 20px 20px 20px;
+        transform: translateX(-100%); /* Oculto a la izquierda */
+        transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        z-index: 1001;
+        box-shadow: 4px 0 15px rgba(0,0,0,0.5);
+    }
+
+    .nav-links.active {
+        transform: translateX(0); /* Entra horizontalmente */
+    }
+    
+    .nav-links li {
+        margin-bottom: 20px;
+        width: 100%;
+    }
+}
