@@ -1,3 +1,4 @@
+require('dotenv').config();
 const express = require("express");
 const app = express();
 const cors = require('cors');
@@ -8,6 +9,7 @@ const perfilRoutes = require("./routes/perfilRouter");
 const contenidoRoutes = require("./routes/contenidoRouter");
 const generoRoutes = require("./routes/generosRouter");
 const avatarRoutes = require('./routes/avatarsRouter');
+const contenidoSeeder = require('./db/seeders/02-contenido'); // Importamos datos para el portfolio
 
 // --- SWAGGER CONFIGURACIÓN ---
 const swaggerUI = require('swagger-ui-express');
@@ -23,7 +25,7 @@ const swaggerOptions = {
         },
         servers: [
             {
-                url: 'http://localhost:3000',
+                url: process.env.RENDER_EXTERNAL_URL || 'http://localhost:3000',
             },
         ],
         components: {
@@ -61,9 +63,19 @@ app.listen(PORT, async ()=>{
     console.log(`Aplicación corriendo en el puerto: ${PORT}`)
 
     try {
-        // Usamos force: true para limpiar la base de datos corrupta y recrear las tablas
-        await db.sequelize.sync();
+        // Usamos force: false para intentar mantener datos, pero si Render reinicia, se recrean las tablas.
+        await db.sequelize.sync({ force: false });
         console.log("Base de datos sincronizada correctamente");
+
+        // --- LÓGICA PORTFOLIO: AUTO-CARGA DE DATOS ---
+        // Si la base de datos está vacía (tras un reinicio de Render), cargamos el contenido automáticamente.
+        const cantidadContenidos = await db.Contenido.count();
+        if (cantidadContenidos === 0) {
+            console.log("Base de datos vacía. Cargando películas y series para el Portfolio...");
+            const queryInterface = db.sequelize.getQueryInterface();
+            await contenidoSeeder.up(queryInterface, db.Sequelize);
+            console.log("¡Datos cargados! La app está lista para interactuar.");
+        }
     } catch (error) {
         console.error("Error al sincronizar la base de datos:", error);
     }

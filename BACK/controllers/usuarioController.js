@@ -2,6 +2,7 @@ const { where } = require("sequelize");
 const { Usuario } = require("../db/models");
 const bcrypt = require("bcryptjs");
 const { Op } = require("sequelize");
+const jwt = require('jsonwebtoken');
 
 const crearUsuario = async (req, res) => {
     try{
@@ -80,7 +81,14 @@ const loginUsuario = async (req, res) => {
         const usuarioSinPassword = usuario.toJSON();
         delete usuarioSinPassword.contraseña;
 
-        res.json({ message: "Login exitoso", usuario: usuarioSinPassword });
+        // Generar Token
+        const token = jwt.sign(
+            { id: usuario.id, email: usuario.email },
+            process.env.JWT_SECRET || 'secreto_super_seguro',
+            { expiresIn: '2h' }
+        );
+
+        res.header('Authorization', token).json({ message: "Login exitoso", usuario: usuarioSinPassword, token });
     } catch (error) {
         res.status(500).json({ error: error.message });
     }
