@@ -2,12 +2,12 @@ import { useState, useEffect, useContext } from "react";
 import { UserContext } from "../context/UserContext";
 import { useNavigate, Link } from "react-router-dom";
 import Footer from "./Footer";
-import "../style/perfil.css";
+import "../style/Perfil.css";
 
 // Definimos la URL base
 const API_URL = import.meta.env.MODE === 'production'
-  ? 'https://app-de-series-estilo-netflix.onrender.com'
-  : 'http://localhost:3000';
+    ? 'https://app-de-series-estilo-netflix.onrender.com'
+    : 'http://localhost:3000';
 
 const Perfil = () => {
     const { user } = useContext(UserContext);
