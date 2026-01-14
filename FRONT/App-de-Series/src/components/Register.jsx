@@ -4,7 +4,7 @@ import Footer from "./Footer";
 import { UserContext } from "../context/UserContext";
 import "../style/Login.css"
 
-// Definimos la URL base: Si estamos en producción usa Render, si no, localhost
+// URL base: Si estamos en producción usa Render, si no, localhost
 const API_URL = import.meta.env.MODE === 'production'
   ? 'https://app-de-series-estilo-netflix.onrender.com'
   : 'http://localhost:3000';
