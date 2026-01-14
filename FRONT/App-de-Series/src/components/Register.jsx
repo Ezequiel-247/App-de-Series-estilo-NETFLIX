@@ -4,6 +4,11 @@ import Footer from "./Footer";
 import { UserContext } from "../context/UserContext";
 import "../style/Login.css"
 
+// Definimos la URL base: Si estamos en producción usa Render, si no, localhost
+const API_URL = import.meta.env.MODE === 'production'
+  ? 'https://app-de-series-estilo-netflix.onrender.com'
+  : 'http://localhost:3000';
+
 const Register = () => {
     const navigate = useNavigate();
     const { login } = useContext(UserContext); // Contexto para guardar usuario
@@ -22,7 +27,7 @@ const Register = () => {
         }
 
         try {
-        const res = await fetch("http://localhost:3000/usuario", {
+        const res = await fetch(`${API_URL}/usuario`, {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({ nombre, email, contraseña }),

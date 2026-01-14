@@ -3,6 +3,11 @@ import { UserContext } from "../context/UserContext";
 import { useNavigate } from "react-router-dom";
 import "../style/CrearPerfil.css";
 
+// Definimos la URL base
+const API_URL = import.meta.env.MODE === 'production'
+  ? 'https://app-de-series-estilo-netflix.onrender.com'
+  : 'http://localhost:3000';
+
 const CrearPerfil = () => {
     const { user } = useContext(UserContext);
     const [nombre, setNombre] = useState("");
@@ -14,7 +19,7 @@ const CrearPerfil = () => {
     useEffect(() => {
         const fetchAvatares = async () => {
         try {
-            const res = await fetch("http://localhost:3000/api/avatars");
+            const res = await fetch(`${API_URL}/api/avatars`);
             const data = await res.json();
             setAvatares(data);
         } catch (err) {
@@ -36,7 +41,7 @@ const CrearPerfil = () => {
 
         setCargando(true); // Bloquea el botón
         try {
-        const res = await fetch(`http://localhost:3000/usuario/${user.id}/perfiles`, {
+        const res = await fetch(`${API_URL}/usuario/${user.id}/perfiles`, {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({ nombre_perfil: nombre, avatarId }),

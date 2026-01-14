@@ -5,6 +5,11 @@ import "../style/Inicio.css";
 import Footer from "./Footer";
 import NavBar from "./NavBar";
 
+// Definimos la URL base
+const API_URL = import.meta.env.MODE === 'production'
+  ? 'https://app-de-series-estilo-netflix.onrender.com'
+  : 'http://localhost:3000';
+
 const Inicio = () => {
     const [contenido, setContenido] = useState([]);
     const [destacada, setDestacada] = useState(null);
@@ -53,7 +58,7 @@ const Inicio = () => {
 
         const fetchContenido = async () => {
             try {
-                const response = await fetch("http://localhost:3000/contenido");
+                const response = await fetch(`${API_URL}/contenido`);
                 if (response.ok) {
                     const data = await response.json();
                     const arrayData = Array.isArray(data) ? data : [];
@@ -72,7 +77,7 @@ const Inicio = () => {
 
         const fetchMiLista = async () => {
             try {
-                const response = await fetch(`http://localhost:3000/perfil/${perfil.id}/lista`);
+                const response = await fetch(`${API_URL}/perfil/${perfil.id}/lista`);
                 if (response.ok) {
                     const data = await response.json();
                     setMiLista(Array.isArray(data) ? data : []);
@@ -106,7 +111,7 @@ const Inicio = () => {
         }
 
         try {
-            const response = await fetch(`http://localhost:3000/perfil/${perfilId}/lista`, {
+            const response = await fetch(`${API_URL}/perfil/${perfilId}/lista`, {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({ contenidoId: destacada.id })
@@ -154,7 +159,7 @@ const Inicio = () => {
         // Si es relativa, agregar dominio del backend
         let url = imagen.startsWith("/") ? imagen : `/${imagen}`;
         if (!url.startsWith("/images/")) url = `/images${url}`;
-        return `http://localhost:3000${url}`;
+        return `${API_URL}${url}`;
     };
 
     // Función para scrollear los carruseles

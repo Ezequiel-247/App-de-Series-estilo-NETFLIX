@@ -4,6 +4,11 @@ import { useNavigate, Link } from "react-router-dom";
 import Footer from "./Footer";
 import "../style/Login.css"
 
+// Definimos la URL base
+const API_URL = import.meta.env.MODE === 'production'
+  ? 'https://app-de-series-estilo-netflix.onrender.com'
+  : 'http://localhost:3000';
+
 const Login = () => {
     const { login } = useContext(UserContext);
     const [identificador, setIdentificador] = useState("");
@@ -21,7 +26,7 @@ const Login = () => {
         }
 
         try {
-            const res = await fetch("http://localhost:3000/usuario/login", {
+            const res = await fetch(`${API_URL}/usuario/login`, {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({ identificador, contraseña }),
@@ -39,7 +44,7 @@ const Login = () => {
             if (recordarme) localStorage.setItem("user", JSON.stringify(data.usuario));
 
             const perfilesRes = await fetch(
-                `http://localhost:3000/usuario/${data.usuario.id}/perfiles`
+                `${API_URL}/usuario/${data.usuario.id}/perfiles`
             );
             const perfilesData = await perfilesRes.json();
 

@@ -4,6 +4,11 @@ import { useNavigate, Link } from "react-router-dom";
 import Footer from "./Footer";
 import "../style/perfil.css";
 
+// Definimos la URL base
+const API_URL = import.meta.env.MODE === 'production'
+  ? 'https://app-de-series-estilo-netflix.onrender.com'
+  : 'http://localhost:3000';
+
 const Perfil = () => {
     const { user } = useContext(UserContext);
     const [perfiles, setPerfiles] = useState([]);
@@ -17,7 +22,7 @@ const Perfil = () => {
 
         const fetchPerfiles = async () => {
         try {
-            const res = await fetch(`http://localhost:3000/usuario/${user.id}/perfiles`);
+            const res = await fetch(`${API_URL}/usuario/${user.id}/perfiles`);
             const data = await res.json();
             const perfilesArray = Array.isArray(data) ? data : data.perfiles || [];
             setPerfiles(perfilesArray);
@@ -31,7 +36,7 @@ const Perfil = () => {
 
     const eliminarPerfil = async (id) => {
         try {
-        const res = await fetch(`http://localhost:3000/perfil/${id}`, {
+        const res = await fetch(`${API_URL}/perfil/${id}`, {
             method: "DELETE",
         });
         if (res.ok) {
