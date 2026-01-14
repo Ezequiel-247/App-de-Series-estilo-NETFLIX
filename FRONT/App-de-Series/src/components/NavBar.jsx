@@ -3,9 +3,9 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 import "../style/Nav.css";
 import "../style/Inicio.css";
 
-import netflixLogo from "../multimedia/netflix.png";
-import lupa from "../multimedia/lupa.svg";
-import campana from "../multimedia/campana.png";
+import netflixLogo from "../Multimedia/netflix.png";
+import lupa from "../Multimedia/lupa.svg";
+import campana from "../Multimedia/campana.png";
 const userDefault = "https://upload.wikimedia.org/wikipedia/commons/0/0b/Netflix-avatar.png";
 
 const NavBar = () => {

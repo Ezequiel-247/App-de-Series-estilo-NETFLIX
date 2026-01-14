@@ -40,3 +40,72 @@ img, video {
     height: auto;
     display: block;
 }
+
+/* --- ESTILOS GLOBALES DE FORMULARIOS Y ANIMACIONES --- */
+
+@keyframes fadeInUp {
+    0% { opacity: 0; transform: translateY(30px); }
+    100% { opacity: 1; transform: translateY(0); }
+}
+
+/* Inputs flotantes (Login, Registro, Crear Perfil) */
+.username {
+    position: relative;
+    margin: 20px 0;
+    border-bottom: 2px solid #adadad;
+}
+
+.username input {
+    width: 100%;
+    padding: 10px 5px;
+    background: none;
+    border: none;
+    outline: none;
+    color: #fff;
+    font-size: 16px;
+}
+
+.username label {
+    position: absolute;
+    top: 50%;
+    left: 5px;
+    transform: translateY(-50%);
+    color: #fff;
+    pointer-events: none;
+    transition: 0.3s;
+    background-color: transparent;
+}
+
+.username input:focus ~ label,
+.username input:not(:placeholder-shown) ~ label,
+.username input:valid ~ label {
+    top: -10px;
+    font-size: 14px;
+    color: rgb(209,76,76);
+    font-weight: bold;
+}
+
+input[type="submit"] {
+    margin-top: 20px;
+    padding: 15px;
+    background: rgb(214,11,11);
+    color: #fff;
+    border: none;
+    border-radius: 10px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: 0.3s;
+    width: 100%;
+}
+
+input[type="submit"]:hover {
+    background: rgb(230,52,52);
+    color: black;
+}
+
+.error {
+    color: #ff4d4f;
+    font-size: 14px;
+    margin-top: 10px;
+    text-align: center;
+}
