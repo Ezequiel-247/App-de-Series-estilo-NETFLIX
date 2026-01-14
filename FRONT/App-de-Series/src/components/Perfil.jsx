@@ -4,7 +4,7 @@ import { useNavigate, Link } from "react-router-dom";
 import Footer from "./Footer";
 import "../style/perfil.css";
 
-// Definimos la URL base
+// URL base
 const API_URL = import.meta.env.MODE === 'production'
   ? 'https://app-de-series-estilo-netflix.onrender.com'
   : 'http://localhost:3000';
