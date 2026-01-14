@@ -5,14 +5,13 @@ import "../style/Inicio.css";
 
 import netflixLogo from "../Multimedia/netflix.png";
 import lupa from "../Multimedia/lupa.svg";
-import campana from "../Multimedia/campana.png";
 const userDefault = "https://upload.wikimedia.org/wikipedia/commons/0/0b/Netflix-avatar.png";
 
 const NavBar = () => {
     const location = useLocation();
     const navigate = useNavigate();
     const [avatar, setAvatar] = useState(userDefault);
-    const [scrolled, setScrolled] = useState(false);
+    const [scrolled, setScrolled] = useState(false); 
     const [mostrarBusqueda, setMostrarBusqueda] = useState(false);
     const [busqueda, setBusqueda] = useState("");
     const [menuAbierto, setMenuAbierto] = useState(false);
@@ -116,7 +115,7 @@ const NavBar = () => {
             ></div>
 
             <nav style={{ display: 'flex', alignItems: 'center' }}>
-                <div className="logo" style={{ marginRight: '20px' }}>
+                <div className="logo" style={{ marginRight: '20px', flexShrink: 0 }}>
                     <Link to="/inicio" onClick={scrollToTop}>
                         <img src={netflixLogo} alt="Logo Netflix" title="Logo Netflix" />
                     </Link>
@@ -143,7 +142,6 @@ const NavBar = () => {
                             onChange={handleSearch}
                         />
                     </li>
-                    <li><a href="#"><img style={{width: "40px"}} src={campana} alt="Campana" /></a></li>
                     <li className="usuario">
                         <Link to="/perfil">
                             <img 

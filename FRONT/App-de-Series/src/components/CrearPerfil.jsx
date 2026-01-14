@@ -34,6 +34,11 @@ const CrearPerfil = () => {
 
         if (cargando) return; // Evita doble envío
 
+        if (nombre.trim().length < 3 || nombre.trim().length > 15) {
+            alert("El nombre del perfil debe tener entre 3 y 15 caracteres.");
+            return;
+        }
+
         if (!avatarId) {
         alert("Debes seleccionar un avatar");
         return;
@@ -72,7 +77,7 @@ const CrearPerfil = () => {
             } else if (data.error && (data.error.includes("Validation error") || data.error.includes("perfil con ese nombre"))) {
                 alert("⚠️ El perfil ya existe. Intenta con otro nombre o vuelve atrás para seleccionarlo.");
             } else {
-                alert("Error al crear perfil: " + data.error);
+                alert("Error al crear perfil: " + (data.error || "Error desconocido"));
             }
             setCargando(false); // Desbloquea si hubo error
         }

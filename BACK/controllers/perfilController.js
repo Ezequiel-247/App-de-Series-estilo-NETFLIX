@@ -6,6 +6,10 @@ const crearPerfil = async (req, res) => {
         const { usuarioId } = req.params;
         const { nombre_perfil, avatarId  } = req.body;
 
+        if (!nombre_perfil || nombre_perfil.length < 3 || nombre_perfil.length > 15) {
+            throw new Error("El nombre debe tener entre 3 y 15 caracteres");
+        }
+
         // Validar usuario y límite de perfiles
         await puedeCrearPerfilConId(usuarioId);
 

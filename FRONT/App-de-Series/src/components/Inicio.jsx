@@ -3,12 +3,11 @@ import { useNavigate, useLocation } from "react-router-dom";
 
 import "../style/Inicio.css"; 
 import Footer from "./Footer";
-import NavBar from "./NavBar";
 
 // URL base
 const API_URL = import.meta.env.MODE === 'production'
-  ? 'https://app-de-series-estilo-netflix.onrender.com'
-  : 'http://localhost:3000';
+    ? 'https://app-de-series-estilo-netflix.onrender.com'
+    : 'http://localhost:3000';
 
 const Inicio = () => {
     const [contenido, setContenido] = useState([]);
@@ -210,8 +209,6 @@ const Inicio = () => {
 
     return (
         <div className="inicio-page">
-            <NavBar />
-            
             {mostrarIntro && (
                 <div className="intro-overlay">
                     <h1 className="intro-texto">Bienvenido/A {perfilNombre}</h1>

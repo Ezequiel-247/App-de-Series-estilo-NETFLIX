@@ -15,9 +15,13 @@ nav.nav-guest {
 
 @media (max-width: 600px) {
     nav.nav-guest {
-        flex-direction: column;
-        gap: 15px;
-        padding: 10px;
+        flex-direction: row;
+        gap: 10px;
+        padding: 10px 15px;
+    }
+
+    nav.nav-guest .idioma {
+        display: none;
     }
 }
 
@@ -25,6 +29,12 @@ nav.nav-guest {
 nav.nav-guest .logo img {
     width: 100px;
     height: auto;
+}
+
+@media (max-width: 600px) {
+    nav.nav-guest .logo img {
+        width: 80px;
+    }
 }
 
 @media (min-width: 768px) {
@@ -104,6 +114,7 @@ nav.nav-guest .idioma select option {
     display: flex;
     align-items: center;
     justify-content: space-between;
+    flex-wrap: nowrap; /* Evita que los elementos bajen de línea y rompan el diseño */
 }
 
 .navegacion {
@@ -116,6 +127,13 @@ nav.nav-guest .idioma select option {
     width: 100px;
     cursor: pointer;
     object-fit: contain;
+    flex-shrink: 0; /* CLAVE: Evita que el logo se mueva o aplaste al abrir el buscador */
+}
+
+@media (max-width: 600px) {
+    .logo {
+        width: 80px; /* Logo más pequeño en móvil para dar espacio al buscador */
+    }
 }
 
 .navegacion--lista {
@@ -183,4 +201,19 @@ nav.nav-guest .idioma select option {
     width: 200px;
     opacity: 1;
     padding-left: 5px;
+}
+
+@media (max-width: 600px) {
+    .buscador.activo input {
+        width: 110px; /* Buscador más corto en móvil para que entre todo */
+    }
+}
+
+/* --- Ocultar Campana --- */
+/* Agrega la clase 'campana' a tu imagen en el JSX o usa esto si ya tiene una clase identificable */
+.campana, 
+img[alt="Notificaciones"],
+img[src*="campana"],
+img[src*="bell"] { 
+    display: none !important; 
 }
